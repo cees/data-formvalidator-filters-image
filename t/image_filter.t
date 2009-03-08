@@ -8,7 +8,8 @@ use Data::FormValidator;
 use Data::FormValidator::Filters::Image qw(image_filter);
 use Image::Size qw(imgsize);
 use File::Slurp qw(slurp);
-use Test::More tests => 25;
+use File::stat;
+use Test::More tests => 26;
 
 ###############################################################################
 ### TEST DATA
@@ -124,8 +125,8 @@ image_exceeds_max_height_no_max_width: {
 }
 
 ###############################################################################
-# TEST: no maximum size given
-image_no_maximum_size: {
+# TEST: no options given
+image_no_options_given: {
     my $cgi     = fake_upload( image => [$test_image] );
     my $profile = {
         required        => [qw( image )],
@@ -145,6 +146,12 @@ image_no_maximum_size: {
 
     is $img_w,  75, '... image width';
     is $img_h, 100, '... image height';
+
+    # not only should image size be the same, but also filesize (if it got
+    # resized then it would likely change filesize)
+    my $orig_size    = stat($test_image)->size();
+    my $resized_size = length($image);
+    is $resized_size, $orig_size, '... file size same (image unfiltered)';
 }
 
 ###############################################################################

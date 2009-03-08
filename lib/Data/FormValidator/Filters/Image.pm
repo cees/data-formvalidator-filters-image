@@ -92,6 +92,12 @@ sub __shrink_image {
     my $max_height = shift;
     my @the_rest   = @_;
 
+    # if we weren't given *any* options, there's no point filtering; we're not
+    # going to resize the image.
+    if ((!defined $max_width) && (!defined $max_height) && !@the_rest) {
+        return $fh;
+    }
+
     return $fh unless $fh && ref $fh eq 'Fh';
     my $filename = $fh->asString;
     $filename =~ s/^.*[\/\\]//; # strip off any path information that IE puts in the filename
