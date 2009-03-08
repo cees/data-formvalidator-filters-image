@@ -4,6 +4,7 @@ use strict;
 
 use File::Basename;
 use Image::Magick;
+use IO::File;
 use MIME::Types;
 
 =pod
@@ -98,8 +99,11 @@ sub __shrink_image {
 
     my ($result, $image);
     eval {
+        # turn the Fh from CGI.pm back into a regular Perl filehandle, then
+        # let ImageMagick read the image from _that_ fh.
+        my $fh_copy = IO::File->new_from_fd(fileno($fh), 'r');
         $image = Image::Magick->new;
-        $result = $image->Read( file => \*$fh );
+        $result = $image->Read( file => $fh_copy );
     };
     if ($@) {
         #warn "Uploaded file was not an image:  $@";
