@@ -8,6 +8,6 @@ README
 t/01_basic.t
 t/pod.t
 t/pod_coverage.t
-t/empty.jpg
-t/file.txt
-t/image.jpg
+t/data/empty.jpg
+t/data/file.txt
+t/data/image.jpg

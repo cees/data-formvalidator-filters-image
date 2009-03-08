@@ -62,14 +62,14 @@ my $req = &HTTP::Request::Common::POST(
     Content      => [
         name   => 'name1',
         test   => 'name2',
-        image1 => ["t/image.jpg"],
-        image2 => ["t/image.jpg"],
-        image3 => ["t/image.jpg"],
-        image4 => ["t/image.jpg"],
-        image5 => ["t/image.jpg"],
-        image6 => ["t/empty.jpg"],
-        image7 => ["t/image.jpg", 'C:/Program Files/dumb/filename/IE/passes.jpg'],
-        file   => ["t/file.txt"],
+        image1 => ["t/data/image.jpg"],
+        image2 => ["t/data/image.jpg"],
+        image3 => ["t/data/image.jpg"],
+        image4 => ["t/data/image.jpg"],
+        image5 => ["t/data/image.jpg"],
+        image6 => ["t/data/empty.jpg"],
+        image7 => ["t/data/image.jpg", 'C:/Program Files/dumb/filename/IE/passes.jpg'],
+        file   => ["t/data/file.txt"],
     ]
 );
 $ENV{REQUEST_METHOD} = 'POST';
