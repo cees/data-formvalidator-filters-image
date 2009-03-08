@@ -8,11 +8,12 @@ WriteMakefile
                            'CGI' => 0,
                            'Data::FormValidator' => 0,
                            'File::Basename' => 0,
+                           'File::Slurp' => 0,
                            'File::Spec' => 0,
                            'HTTP::Request::Common' => 0,
                            'IO::Scalar' => 0,
-                           'Image::Info' => 0,
                            'Image::Magick' => 0,
+                           'Image::Size' => 0,
                            'MIME::Types' => 0
                          },
           'INSTALLDIRS' => 'site',

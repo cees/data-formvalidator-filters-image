@@ -5,7 +5,7 @@ Makefile.PL
 MANIFEST
 META.yml
 README
-t/01_basic.t
+t/image_filter.t
 t/pod.t
 t/pod_coverage.t
 t/data/empty.jpg
