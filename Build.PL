@@ -14,6 +14,7 @@ Module::Build->new(
     build_requires => {
         'HTTP::Request::Common' => 0,
         'Image::Info' => 0,
+        'IO::Scalar' => 0,
     },
     create_makefile_pl => 'traditional',
     create_readme => 1,

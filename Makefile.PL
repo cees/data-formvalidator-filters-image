@@ -10,6 +10,7 @@ WriteMakefile
                            'File::Basename' => 0,
                            'File::Spec' => 0,
                            'HTTP::Request::Common' => 0,
+                           'IO::Scalar' => 0,
                            'Image::Info' => 0,
                            'Image::Magick' => 0,
                            'MIME::Types' => 0
