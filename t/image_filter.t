@@ -9,7 +9,7 @@ use Data::FormValidator::Filters::Image qw(image_filter);
 use Image::Size qw(imgsize);
 use File::Slurp qw(slurp);
 use File::stat;
-use Test::More tests => 26;
+use Test::More tests => 30;
 
 ###############################################################################
 ### TEST DATA
@@ -138,6 +138,39 @@ image_no_options_given: {
     my $results = Data::FormValidator->check( $cgi, $profile );
     isa_ok $results, 'Data::FormValidator::Results',
         'validated form data (no max size given)';
+
+    my $valid    = $results->valid();       # get the valid data
+    my $image_fh = $valid->{image};         # the Fh for the uploaded image
+    my $image    = slurp($image_fh);        # slurp in the image data
+    my ($img_w, $img_h) = imgsize(\$image); # height/width of image
+
+    is $img_w,  75, '... image width';
+    is $img_h, 100, '... image height';
+
+    # not only should image size be the same, but also filesize (if it got
+    # resized then it would likely change filesize)
+    my $orig_size    = stat($test_image)->size();
+    my $resized_size = length($image);
+    is $resized_size, $orig_size, '... file size same (image unfiltered)';
+}
+
+###############################################################################
+# TEST: image already within max limits
+image_already_within_max_limits: {
+    my $cgi     = fake_upload( image => [$test_image] );
+    my $profile = {
+        required        => [qw( image )],
+        field_filters   => {
+            image   => image_filter(
+                max_width   => 100,
+                max_height  => 100,
+            ),
+        },
+    };
+
+    my $results = Data::FormValidator->check( $cgi, $profile );
+    isa_ok $results, 'Data::FormValidator::Results',
+        'validated form data (already within max limits)';
 
     my $valid    = $results->valid();       # get the valid data
     my $image_fh = $valid->{image};         # the Fh for the uploaded image

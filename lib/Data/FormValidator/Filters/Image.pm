@@ -139,6 +139,12 @@ sub __shrink_image {
         $nw = $ow * ( $max_height / $oh );
     }
 
+    if (($oh <= $max_height) && ($ow <= $max_width)) {
+        #warn "Image does not need to be resized";
+        seek( $fh, 0, 0 );
+        return $fh;
+    }
+
     $result = $image->Resize( width => $nw, height => $nh, @the_rest );
     if ("$result") { # quotes are there as per the Image::Magick examples
         #warn "$result";
