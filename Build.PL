@@ -11,7 +11,7 @@ Module::Build->new(
         'File::Basename' => 0,
         'File::Spec' => 0,
     },
-    recommends => {
+    build_requires => {
         'HTTP::Request::Common' => 0,
         'Image::Info' => 0,
     },
