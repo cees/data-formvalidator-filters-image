@@ -30,6 +30,7 @@ sub fake_upload {
         REQUEST_METHOD  => 'POST',
         CONTENT_TYPE    => $content_type,
         CONTENT_LENGTH  => $content_length,
+        HTTP_USER_AGENT => 'Test 1.0',
     );
     my $fake_stdin = IO::Scalar->new(\$content_buffer);
 
