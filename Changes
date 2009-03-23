@@ -1,6 +1,7 @@
 Revision history for Perl extension Data::FormValidator::Filters::Image.
 
-???
+0.40  Mon Mar 23 23:29:09 EST 2009
+
     - Fix breakage on newer Perls; we now work on Perl 5.10
       (gtermars@cpan.org)
     - Rewrote test suite; now easier to follow

@@ -1,6 +1,6 @@
 ---
 name: Data-FormValidator-Filters-Image
-version: 0.30
+version: 0.40
 author:
   - 'Cees Hek <ceeshek@gmail.com>'
 abstract: Filter that allows you to shrink incoming image uploads when using Data::FormValidator
@@ -22,7 +22,7 @@ build_requires:
 provides:
   Data::FormValidator::Filters::Image:
     file: lib/Data/FormValidator/Filters/Image.pm
-    version: 0.30
+    version: 0.40
 generated_by: Module::Build version 0.280801
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
